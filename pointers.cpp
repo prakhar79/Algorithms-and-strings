@@ -10,6 +10,7 @@ class pointers
     public:
         void basic_pointers();
         void passingPointerAsRef(int *p);
+        void passingArrayPointer(int *p);
 };
 
 void pointers ::basic_pointers()
@@ -32,10 +33,17 @@ void pointers ::passingPointerAsRef(int *p)
     cout << p << endl;
     cout << *p << endl;
 }
+
+void pointers ::passingArrayPointer(int *p)
+{
+    int i;
+    for (i=0;i<5;i++)
+        cout<< p[i] << " ";
+}
 int main ()
 {
     pointers p;
-    // p.basic_pointers();
+    p.basic_pointers();
     int a =5;
     int *p1;
     p1 = &a;
@@ -45,5 +53,18 @@ int main ()
      * We can not pass *p1 as *p1 is 5.
      * */
     p.passingPointerAsRef(p1);
+    //Creating an array for the function passingArrayPointer.
+    int arr[]={1,2,3,4,5};
+    int *p2;
+    p2 = arr;
+    /*
+     * So here we are passing a pointer of an array. Just name of an array represents the
+     * address of the first element of a array.
+     * Here we are calling the function by a pointer and the name of the array.
+     * In both the cases output is same.
+     */
+    p.passingArrayPointer(p2);
+    cout << endl;
+    p.passingArrayPointer(arr);
     return 0;
 }
