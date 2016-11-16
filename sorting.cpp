@@ -2,7 +2,7 @@
  *This program contains implimentation of different sorting alogrythms.
  */
 
-#include <iostream.h>
+#include <iostream>
 #include <stdio.h>
 
 using namespace std;
@@ -10,7 +10,7 @@ using namespace std;
 class doSort
 {
     public:
-        void mergeSort(int arr[]);
+        void mergeSort(int arr[],int len);
 };
 
 /*void doSort :: mergeSort(int arr[],int ref =0)
@@ -46,5 +46,16 @@ class doSort
 
 void doSort :: mergeSort(int *arr,int len)
 {
-    int mid=len/2;
-    mergeSort(arr + )
+    int mid = len / 2;
+    left = *arr;
+    right = *arr + mid;
+    mergeSort(left, mid);
+    mergeSort(right, len - mid);
+}
+
+int main()
+{
+    doSort sort;
+    int a[]={1,24,2,4};
+    sort.mergeSort(a,4);
+}
