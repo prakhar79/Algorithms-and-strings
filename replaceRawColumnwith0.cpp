@@ -7,10 +7,10 @@ This prgomram wills take an array.
 class matrix
 {
     public:
-        int replaceWithZero(char *mat);
+        int replaceWithZero(char *mat,l);
 };
 
-int matrix ::replaceWithZero(char *mat)
+int matrix ::replaceWithZero(char *mat,l)
 {
-    
+
 }
