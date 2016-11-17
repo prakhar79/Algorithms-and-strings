@@ -42,11 +42,14 @@ void pointers ::passingArrayPointer(int *p)
 }
 int main ()
 {
+    int a[]={1,2,3,4,5};
+    int *ptr;
+    ptr = a;
+    cout << ptr+1 << endl;
     pointers p;
     p.basic_pointers();
-    int a =5;
     int *p1;
-    p1 = &a;
+    p1 = a;
     /* So, to tun passingPointerAsRef we need to pass a memory location.
      * In this case we are passing a's memory location. We can pass either &a
      * or p1 both will work.
