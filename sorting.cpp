@@ -46,16 +46,22 @@ class doSort
 
 void doSort :: mergeSort(int *arr,int len)
 {
+    int i;
     int mid = len / 2;
-    left = *arr;
-    right = *arr + mid;
+    int *left,*right;
+    left = arr;
+    right = (arr + mid);
     mergeSort(left, mid);
     mergeSort(right, len - mid);
+    for(i=0;i<len;i++)
+    {
+        cout<<*(arr+i) << " ";
+    }
 }
 
 int main()
 {
     doSort sort;
-    int a[]={1,24,2,4};
+    int a[4]={1,24,2,4};
     sort.mergeSort(a,4);
 }
