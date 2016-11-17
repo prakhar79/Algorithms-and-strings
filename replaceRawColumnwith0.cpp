@@ -12,14 +12,6 @@ using namespace std;
 class matrix
 {
     public:
-<<<<<<< HEAD
-        int replaceWithZero(char *mat,l);
-};
-
-int matrix ::replaceWithZero(char *mat,l)
-{
-
-=======
         void replaceWithZero(int *mat, int l);
 };
 
@@ -66,5 +58,4 @@ int main()
             cout << arr[i][j];
         cout << endl;
     }
->>>>>>> 6c98e5c9dd95ab2d5a176296b47fd1d79b2a11cd
 }
