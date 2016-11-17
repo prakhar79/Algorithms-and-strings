@@ -2,7 +2,7 @@
 
 int getGCD (int x, int y){
 
-	int temp,min,max;
+	int min;
 	if (x==y) 
 		return x;
 	
@@ -20,11 +20,13 @@ int getGCD (int x, int y){
 	return 1;
 }
 
-void main(){
+int main(){
 	
 	int a,b,GCD;
 	printf("Enter Two Numbers :");
 	scanf("%d %d",&a,&b);
 	GCD = getGCD(a,b);
 	printf("GCD is %d \n",GCD);
+
+	return 0;
 }
