@@ -10,94 +10,74 @@ using namespace std;
 class doSort
 {
     public:
-        void mergeSort(int arr[],int len);
+        void mergeSort(int arr[],int start,int stop);
 };
 
-/*void doSort :: mergeSort(int arr[],int ref =0)
+void mergeSortHelper (int arr[],int l,int r,int mid)
 {
-    int len = len(arr)/len(arr[0]);
-    int mid;
-    int left[mid],right[len-mid];
-    int i,j=0,k;
-    for (i=0;i<min;i++)
+    int i,j,k;
+    int ll=mid-l+1,rl=r-mid;
+    int left[ll],right[rl];
+
+    for(i=0;i<ll;i++)
+        left[i] = arr[l+i];
+    for(i=0;i<rl;i++)
+        right[i] = arr[mid+1+i];
+
+    i=j=0;
+    k=l;
+
+    while (i<(ll) && j<rl)
     {
-        left[i] = arr[j];
-        j++;
-    }
-    for (i=0;i<len-min;i++)
-    {
-        left[i] = arr[j];
-        j++;
-    }
-    mergeSort(left,0);
-    mergeSort(right, ref + mid);
-
-    left = len/2;
-    right = len-left;
-
-    mergeSort(left);
-    mergeSort(right);
-
-    i=0;
-    j=0;
-    k=
-
-} */
-
-void doSort :: mergeSort(int *arr,int len)
-{
-
-    int i,j,temp;
-    int mid = len / 2;
-    int *left,*right;
-
-    if (len<=0)
-        return;
-
-    
-    for(i=0;i<len;i++)
-    {
-        cout<<*(arr+i) << " " ;
-    }
-    cout << endl;
-
-    left = arr;
-    right = (arr + mid);
-    mergeSort(left, mid);
-    if (len<=1)
-        mergeSort(right, 0);
-    else
-        mergeSort(right, len-mid);
-    i=0;
-    j=0;
-    while (i < mid && j < len-mid)
-    {
-        if(*(left+i) > *(right+j))
+        if (left[i]<=right[j])
         {
-            temp = *left;
-            *left = *right;
-            *right = temp;
+            arr[k]=left[i];
             i++;
-            j=0;
         }
         else
         {
+            arr[k]=right[j];
             j++;
         }
+        k++;
     }
 
+    while(i<ll)
+    {
+        arr[k]=left[i];
+        i++;
+        k++;
+    }
 
-    
-    
+    while(j<rl)
+    {
+        arr[k]=right[j];
+        j++;
+        k++;
+    }
+
+}
+
+void doSort :: mergeSort(int arr[],int il,int ir)
+{
+
+    if (il < ir)
+    {
+        int mid = il +((ir-il)/2);
+        mergeSort(arr,il,mid);
+        mergeSort(arr,mid+1,ir);
+
+        mergeSortHelper(arr,il,ir,mid);
+    }
 }
 
 int main()
 {
     doSort sort;
     int i;
-    int a[4]={5,3,4,1,2};
-    sort.mergeSort(a,4);
-    for(i=0;i<4;i++)
+    int a[]={1,2,3,4,78,6,7,8};
+    sort.mergeSort(a,0,(sizeof(a)/sizeof(a[0]))-1);
+    for(i=0;i<sizeof(a)/sizeof(a[0]);i++)
     {
         cout<<a[i] << " " ;
     }
