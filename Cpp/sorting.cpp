@@ -3,82 +3,129 @@
  */
 
 #include <iostream>
-#include <stdio.h>
 
 using namespace std;
 
-class doSort
+class Sort
 {
     public:
-        void mergeSort(int arr[],int start,int stop);
+        void insertionSort(int* array,int len);
+        void MergeSort(int* array,int a, int b);
+
+    private:
+        void merge(int* array,int a,int mid,int b);
 };
 
-void mergeSortHelper (int arr[],int l,int r,int mid)
+/*
+Insertion  sort the most basic sorting algorithm. 
+I have implemented it for an array. 
+*/
+
+void Sort :: insertionSort(int* array,int len)
+{
+    int key;
+    int i,j;
+
+    for(i=0;i<len;i++)
+    {
+        j=i;
+        for (;j>0 && array[j] < array[j-1];j--)
+        {
+            key=array[j];
+            array[j]=array[j-1];
+            array[j-1]=key;
+        }
+    } 
+}
+
+/*
+Merge sort uses devide and conqure apporoach to sort an array. 
+It needs array with three reference points. 
+a = starting
+m = mid point
+b = end point 
+*/
+
+//This function is used to merge the arrays into one. 
+
+void Sort :: merge(int* array,int a,int mid,int b)
 {
     int i,j,k;
-    int ll=mid-l+1,rl=r-mid;
-    int left[ll],right[rl];
+    int n1,n2;
+    n1 = (mid-a) + 1;
+    n2 = b-mid;
 
-    for(i=0;i<ll;i++)
-        left[i] = arr[l+i];
-    for(i=0;i<rl;i++)
-        right[i] = arr[mid+1+i];
+    int L[n1],R[n2];
+
+    for(i=0;i<n1;i++)
+        L[i]=array[a+i];
+       
+    for(i=0;i<n2;i++)
+    {
+        R[i]=array[n1+i];
+        cout << R[i];
+    }
+    cout << endl;
 
     i=j=0;
-    k=l;
+    k=a;
 
-    while (i<(ll) && j<rl)
+    while(i<n1 && j<n2)
     {
-        if (left[i]<=right[j])
+        if(L[i]<=R[j])
         {
-            arr[k]=left[i];
+            array[k]=L[i];
             i++;
         }
         else
         {
-            arr[k]=right[j];
+            array[k]=R[j];
             j++;
         }
         k++;
     }
-
-    while(i<ll)
+    while(i<n1)
     {
-        arr[k]=left[i];
+        array[k]=L[i];
         i++;
         k++;
     }
-
-    while(j<rl)
+    while(j<n2)
     {
-        arr[k]=right[j];
+        array[k]=R[j];
         j++;
         k++;
     }
-
 }
 
-void doSort :: mergeSort(int arr[],int il,int ir)
+//To initalize merge sort we need a helper function called MergeSort.
+//This fucntion will make an initial call.
+
+void Sort :: MergeSort(int* array,int a,int b)
 {
-
-    if (il < ir)
+    if(a<b)
     {
-        int mid = il +((ir-il)/2);
-        mergeSort(arr,il,mid);
-        mergeSort(arr,mid+1,ir);
+        int m = (a+b)/2;
+        MergeSort(array,a,m);
+        MergeSort(array,m+1,b);
 
-        mergeSortHelper(arr,il,ir,mid);
+        merge(array,a,m,b); 
     }
-}
+} 
+
 
 int main()
 {
-    doSort sort;
+    Sort s;
     int i;
-    int a[]={1,2,3,4,78,6,7,8};
-    sort.mergeSort(a,0,(sizeof(a)/sizeof(a[0]))-1);
-    for(i=0;i<sizeof(a)/sizeof(a[0]);i++)
-    {
+    int a[]={-1,-5,-67,4,4,1,2};
+    int len_array = (sizeof(a)/sizeof(a[0]));
+
+    //s.insertionSort(a,len_array);
+    s.MergeSort(a,0,len_array-1);
+   for(i=0;i<len_array;i++)
+     {
         cout<<a[i] << " " ;
     }
+    return 1;
 }
