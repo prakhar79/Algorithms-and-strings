@@ -61,11 +61,7 @@ void Sort :: merge(int* array,int a,int mid,int b)
         L[i]=array[a+i];
        
     for(i=0;i<n2;i++)
-    {
-        R[i]=array[n1+i];
-        cout << R[i];
-    }
-    cout << endl;
+        R[i]=array[mid+1+i];
 
     i=j=0;
     k=a;
@@ -81,7 +77,7 @@ void Sort :: merge(int* array,int a,int mid,int b)
         {
             array[k]=R[j];
             j++;
-        }
+        }+
         k++;
     }
     while(i<n1)
@@ -105,7 +101,8 @@ void Sort :: MergeSort(int* array,int a,int b)
 {
     if(a<b)
     {
-        int m = (a+b)/2;
+        
+        int m = a+(b-a)/2;
         MergeSort(array,a,m);
         MergeSort(array,m+1,b);
 
@@ -118,7 +115,7 @@ int main()
 {
     Sort s;
     int i;
-    int a[]={-1,-5,-67,4,4,1,2};
+    int a[]={-1,-5,4,3,4,6,7,8,0,-13};
     int len_array = (sizeof(a)/sizeof(a[0]));
 
     //s.insertionSort(a,len_array);
